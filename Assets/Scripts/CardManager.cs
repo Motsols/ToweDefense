@@ -77,9 +77,30 @@ public class CardManager : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             Destroy(_draggingBuilding);
         else
         {
-            _gridController.Grid[(int)_draggingBuilding.transform.position.x,
-                (int)_draggingBuilding.transform.position.z] = _building;
+            // _gridController.Grid[(int)_draggingBuilding.transform.position.x,
+            //     (int)_draggingBuilding.transform.position.z] = _building;
 
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                var child = transform.GetChild(i);
+                Debug.Log($"Looking in {transform.name}, {child.name}, {child.childCount}");
+
+                // if(child.name == "Square" || child.name == "Sphere")
+                //     Debug.Log($"prefab {child.name} color: {child.GetComponent<Material>().color}");
+                    // Debug.Log($"prefab {_cardSO.name} color: {transform.GetChild(i)}");
+            }
+
+                // Debug.Log($"Looking in {_cardSO.Prefab.name}, {_cardSO.Prefab.gameObject.name}, {_cardSO.Prefab.gameObject.gameObject.name} {_cardSO.Prefab.gameObject.gameObject.name}");
+                // Debug.Log($"Looking in {transform.name}, {transform.gameObject.name}, {transform.Find("Material")}");
+                // var a = _cardSO.Prefab.gameObject.transform.GetChild(0).GetComponentInChildren<Material>().color;
+            // for (int i = 0; i < _cardSO.Prefab.GetComponents()); i++)
+            // {
+            //     var child = transform.GetChild(i);
+
+            //     if(child.name == "Square" || child.name == "Sphere")
+            //         Debug.Log($"prefab {child.name} color: {child.GetComponent<Material>().color}");
+            //         // Debug.Log($"prefab {_cardSO.name} color: {transform.GetChild(i)}");
+            // }
             _building.ResetColor();
         }
     }

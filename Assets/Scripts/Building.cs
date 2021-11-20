@@ -7,6 +7,8 @@ public class Building : MonoBehaviour
     [SerializeField] private Vector2 _buildingSize;
     [SerializeField] private Renderer _renderer;
 
+    private Color originalColor = Color.black;
+
     public Vector2 BuildingSize { get { return _buildingSize; } private set {; } }
 
     public void SetColor(bool isAvailableToBuild)
@@ -19,6 +21,7 @@ public class Building : MonoBehaviour
 
     public void ResetColor()
     {
-        _renderer.material.color = Color.white;
+
+        _renderer.material.color = Color.black;
     }
 }
