@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea51e21dbc423b447a388b76065cd703, type: 3}
   m_Name: Sphere
   m_EditorClassIdentifier: 
-  Icon: {fileID: 0}
+  Icon: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   Prefab: {fileID: 3296732573664112391, guid: 5e0e8d39091b48943889174898e0f84a, type: 3}
   Cost: 5
