@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class WaveSpawner : MonoBehaviour
 {
@@ -10,10 +11,31 @@ public class WaveSpawner : MonoBehaviour
     private int _currentWaveIndex;
     private int _enemiesLeftToSpawn;
 
+    const int countdown = 3;
+    private float timeRemaining = countdown;
+    private bool timerIsRunning = true;
+
     private void Start()
     {
         _enemiesLeftToSpawn = _waves[0].WaveSettings.Length;
-        StartCoroutine(SpawnEnemyInWave());
+        // StartCoroutine(SpawnEnemyInWave());
+    }
+
+    void Update() {
+        
+        var countDownComponent = GameObject.Find("Countdown").GetComponent<TextMeshProUGUI>();
+        var currentTimer = int.Parse(countDownComponent.text);
+
+        if(timerIsRunning){
+            if(timeRemaining > 0){
+                timeRemaining -= Time.deltaTime;
+            } else {
+                timerIsRunning = false;
+                LaunchWave();
+            }
+        }
+
+        countDownComponent.text = ((int)timeRemaining).ToString();
     }
 
     private IEnumerator SpawnEnemyInWave()
@@ -23,6 +45,7 @@ public class WaveSpawner : MonoBehaviour
             yield return new WaitForSeconds(_waves[_currentWaveIndex]
                 .WaveSettings[_currentEnemyIndex]
                 .SpawnDelay);
+                Debug.Log($"current index: {_currentWaveIndex}");
             Instantiate(_waves[_currentWaveIndex]
                 .WaveSettings[_currentEnemyIndex].Enemy, 
                 _waves[_currentWaveIndex].WaveSettings[_currentEnemyIndex]
@@ -40,6 +63,11 @@ public class WaveSpawner : MonoBehaviour
                 _currentEnemyIndex = 0;
             }
         }
+    }
+
+    public void RestartCounter(){
+        timeRemaining = countdown;
+        timerIsRunning = true;
     }
 
     public void LaunchWave()

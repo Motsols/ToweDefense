@@ -43,7 +43,7 @@ public class CardManager : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     _isAvailableToBuild = true;
 
                 if (_isAvailableToBuild && IsPlaceTaken(x, z)) _isAvailableToBuild = false;
-                if ((z % 2 == 1) || (x % 2 == 1)) _isAvailableToBuild = false;
+                // if ((z % 2 == 1) || (x % 2 == 1)) _isAvailableToBuild = false;
 
                 _draggingBuilding.transform.position = new Vector3(x, 0, z);
 
